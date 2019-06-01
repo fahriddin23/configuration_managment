@@ -1,5 +1,6 @@
 ---
 - name: Installs wordpress
+  hosts: localhost
   become: yes
   become_method: sudo
   gather_facts: no
@@ -21,7 +22,7 @@
      ignore_errors: true
 
    - name: Helps to download file
-     hosts: all
+     hosts: localhost
      become: yes
      become_method: sudo
      tasks:
