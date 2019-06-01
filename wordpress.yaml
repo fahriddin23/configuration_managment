@@ -17,3 +17,37 @@
       - mariadb-server
       - php 
       - php-mysql
+      - php-fpm
+     ignore_errors: true
+
+   - name: Helps to download file
+     hosts: all
+     become: yes
+     become_method: sudo
+     tasks:
+   - name: Download 1 package
+     get_url:
+       url: "https://wordpress.org/latest.tar.gz"
+       dest: /tmp/
+
+   - name: unzip wordpress file
+     unarchive:
+       src: "/tmp/latest.tar.gz"
+       dest: /var/www/html/
+     become: yes
+     become_method: sudo
+
+   - name: move files to html folder
+     shell: "mv /var/www/html/wordpress/* /var/www/html"
+     become: yes
+     become_method: sudo
+     ignore_errors: yes
+
+   - name: restart httpd
+     systemd:
+       name: httpd
+       state: restarted
+     enabled: yes
+     become: yes
+     become_method: sudo
+
