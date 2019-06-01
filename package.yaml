@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks: 
+   - name: Install 1 package
+     package:
+       name: httpd
+       stage: latest
+     become: yes
+     become_method: sudo

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+   - name: Copy Files
+     copy: 
+       src: /tmp/test
+       dest: /tmp somfile
+     become: yes
+     become_method: sudo
+     
