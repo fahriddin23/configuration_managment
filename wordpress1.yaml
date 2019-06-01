@@ -15,7 +15,7 @@
         - mysql 
         - mariadb-server
         - php-mysql 
-      ignore_errors: yes 
+      ignore_errors: true 
 
 
     - name: Get Wordpress
@@ -35,6 +35,8 @@
 
     - name: Move content
       shell: "mv /var/www/html/wordpress/*  /var/www/html" 
+      become: yes
+      become_method: sudo 
       ignore_errors: yes 
 
 
@@ -45,3 +47,5 @@
         state: restarted 
         enabled: yes 
       ignore_errors: yes
+      become: yes
+      become_method: sudo 
