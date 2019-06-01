@@ -1,0 +1,8 @@
+---
+- name: Installs wordpress
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  ignore_errors: true
+  connection: ssh
+  
