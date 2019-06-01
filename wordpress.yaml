@@ -5,4 +5,15 @@
   gather_facts: no
   ignore_errors: true
   connection: ssh
-  
+  tasks:
+   - name: Install necessary packages
+     packages:
+       name: "{{item}}"
+       state: latest
+     with_items:
+      - php-gd
+      - httpd
+      - mysql
+      - mariadb-server
+      - php 
+      - php-mysql
