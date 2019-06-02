@@ -7,7 +7,7 @@
    - name: URL
      prompt: "Give me the url: "
      private: no
-   - name: Destination
+   - name: DESTINATION
      prompt: "Give me the location to put: "
      private: no
 
