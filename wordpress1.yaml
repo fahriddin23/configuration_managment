@@ -1,53 +1,57 @@
 ---
 - name: Installs wordpress
-  hosts: localhost
+  hosts: web
   become: yes
   become_method: sudo 
-  tasks: 
-    - name: Install Webserver and dependencies 
+  gather_facts: no 
+  connection: ssh
+  tasks:
+    - name: Install necessary packages
       package: 
-        name: "{{ item }}"
-      with_items: 
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - wget
+        - unzip
+        - php-gd
         - httpd
-        - elinks 
-        - php
-        - php-gd 
-        - mysql 
+        - mysql
         - mariadb-server
-        - php-mysql 
-      ignore_errors: true 
+        - php 
+        - php-mysql
+        - php-fpm
+      ignore_errors: true
 
+    - name: install epel-release
+      shell: "sudo wget -q http:rpms.remirepo.net/enterprise/remi-release-7.rpm"
+    - name: config manager enabled
+      shell: "sudo yum-config-manager --enable remi-php70"
+    - name: update httpd PHP
+      shell: "sudo yum update httpd php php-mysql mysql"
+    
+    - name: Download wordpress package
+      get_url:
+        url: "https://wordpress.org/latest.tar.gz"
+        dest: /tmp/
 
-    - name: Get Wordpress
-      get_url: 
-        url: https://wordpress.org/latest.tar.gz 
-        dest: /tmp 
-
-
-
-    - name: Unzip wordpress
-      unarchive: 
-        src: /tmp/wordpress-5.2.1.tar.gz 
-        dest: /var/www/html
+    - name: Unzip wordpress file
+      unarchive:
+        src: "/tmp/wordpress-5.2.1.tar.gz"
+        dest: /var/www/html/
         remote_src: yes
-        become: yes
-        become_method: sudo
-
-
-
-    - name: Move content
-      shell: "mv /var/www/html/wordpress/*  /var/www/html" 
       become: yes
-      become_method: sudo 
-      ignore_errors: yes 
+      become_method: sudo
 
-
-
-    - name: Start webserver 
-      systemd: 
-        name: httpd 
-        state: restarted 
-        enabled: yes 
+    - name: Move files to html folder
+      shell: "mv /var/www/html/wordpress/*  /var/www/html/"
+      become: yes
+      become_method: sudo
       ignore_errors: yes
+      
+    - name: Restart httpd 
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
       become: yes
-      become_method: sudo 
+      become_method: sudo
