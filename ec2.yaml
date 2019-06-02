@@ -1,4 +1,4 @@
----
+---  #sudo pip install boto
 - name: Creates ec2 instance
   hosts: localhost
   tasks:
@@ -7,8 +7,7 @@
         key_name: mylaptop
         instance_type: t2.micro
         image: ami-0d3ebe261ec589631 
-        wait: yes
-        group: webserver
+        group: Centos7
         count: 3
         vpc_subnet_id: vpc-47eff12f
         assign_public_ip: yes
