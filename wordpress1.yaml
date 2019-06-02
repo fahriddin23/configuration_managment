@@ -7,7 +7,6 @@
   connection: ssh
   tasks:
     - name: Install necessary packages
-      use: yum
       package: 
         name: "{{item}}"
         state: latest
