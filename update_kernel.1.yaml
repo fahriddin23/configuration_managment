@@ -1,0 +1,18 @@
+---
+- hosts: kernel
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: update kernel to latest
+      when: ansilbe_distribution == "CentOS Ubuntu Debian"
+      package:
+        name: kernel
+        state: latest
+      become: yes
+      become_method: sudo
+    - name: restart the system
+      when: ansilbe_distribution == "CentOS Ubuntu Debian"
+      reboot:
+
+    #- name: Restart the system when the os is Centos Ubuntu or Debian
+    #  reboot: 
