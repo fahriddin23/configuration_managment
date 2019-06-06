@@ -7,7 +7,7 @@
     - name: Create a Repository
       copy:
           src: r1soft.repo
-          dest: /etc/yum.repo.d/r1soft.repo
+          dest: /etc/yum.repos.d/r1soft.repo
 
     - name: Install r1soft agent
       package:
