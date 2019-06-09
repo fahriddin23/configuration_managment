@@ -36,3 +36,5 @@
       systemd:
         name: filebeat
         state: restarted
+
+- ignore_errors: true
