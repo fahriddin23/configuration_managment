@@ -11,7 +11,7 @@
     - httpd
     - mysql
     - mariadb-server
-    - php 
+    - php
     - php-mysql
     - php-fpm
   ignore_errors: true
@@ -38,7 +38,7 @@
 - name: Restart httpd 
   systemd:
     name: httpd
-    state: start
+    state: stopped
     enabled: yes
   become: yes
   become_method: sudo
