@@ -5,4 +5,4 @@
   become_method: root
   tasks: 
     - name: Zip /var/log
-      shell: "find /var/log/httpd/ -type f -name *.log -mtime +15 -exec gzip -9 {} /; "
+      shell: "find /var/log/httpd/ -type f -name *.log -mtime +15 -exec gzip {} /; "
