@@ -1,8 +1,8 @@
 ---
 - name: zips files older than 15 days
-  hosts: "{{host}}"
+  hosts: localhost
   become: yes
   become_method: root
   tasks: 
     - name: Zip /var/log
-      shell: "find /var/log/httpd/ -type f -name *.log -mtime +15 -exec gzip {} /; "
+      shell: "find /var/log/ -type f -name *.log -exec gzip -9 {} \; "
