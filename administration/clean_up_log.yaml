@@ -5,4 +5,4 @@
   become_user: root
   tasks:
     - name: Zip /var/log
-      shell: "find /var/log/ -type f -name *.log -mtime 0 -exec gzip -9 {} \;"
+      command: "find /var/log/ -type f -name *.log -mtime 0 -exec gzip -9 {} \;"
