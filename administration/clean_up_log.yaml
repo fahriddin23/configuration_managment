@@ -1,8 +1,8 @@
 ---
-- name: zips files 
-  hosts: all 
+- name: zips files older than 90 days
+  hosts: localhost
   become: yes
   become_user: root
   tasks:
-    - name: Zip /var/log
-      command: "find /var/log/ -type f -name *.log -mtime 0 -exec gzip -9 {} \;"
+  - name: Zip /var/log
+    command: "find /var/log/ -type f -name *.log -mtime +15 -exec gzip.* -9 {} \ ; "
