@@ -35,7 +35,7 @@
 
     - name: Unzip wordpres file
       unarchive:
-        src: "/tmp/wordpress-5.2.1.tar.gz"    
+        src: "/tmp/wordpress-5.3.2.tar.gz"    
         dest: "/var/www/html"
         remote_src: yes
       become: yes
