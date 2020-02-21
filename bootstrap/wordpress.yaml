@@ -1,6 +1,6 @@
 ---
 - name: Installs wordpress
-  hosts: localhost
+  hosts: 54.162.157.142
   become: yes
   become_method: sudo 
   gather_facts: no 
@@ -29,12 +29,12 @@
 
     - name: Unzip wordpress file
       unarchive:
-        src: "/tmp/wordpress-5.2.1.tar.gz"
+        src: "/tmp/wordpress-5.3.2.tar.gz"
         dest: /var/www/html/
         remote_src: yes
       become: yes
       become_method: sudo
-
+ 
     - name: Move files to html folder
       shell: "mv /var/www/html/wordpress/*  /var/www/html/"
       become: yes
