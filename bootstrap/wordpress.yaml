@@ -52,7 +52,7 @@
     - name: Start htppd
       systemd:
         name: httpd
-        state: start
+        state: started
         enable: yes
       become: yes
       become_method: sudo
