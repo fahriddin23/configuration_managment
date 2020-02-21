@@ -41,18 +41,18 @@
       become_method: sudo
       ignore_errors: yes
       
-#    - name: Restart httpd 
-#      systemd:
-#        name: httpd
-#        state: started
-#        enabled: yes
-#      become: yes
-#      become_method: sudo
+    - name: Restart httpd 
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+      become: yes
+      become_method: sudo
     
     - name: Start htppd
       systemd:
         name: httpd
         state: started
-        enable: yes
+        enabled: yes
       become: yes
       become_method: sudo
